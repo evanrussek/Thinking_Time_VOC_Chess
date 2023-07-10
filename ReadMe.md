@@ -8,7 +8,7 @@ Contact Evan Russek (evrussek@gmail.com) or Dan Acosta-Kane (dan.acostakane@gmai
 
 - VOC_Analysis examines relationship between value of computation and response time (Figs. 1, 2, and 3).
 
-- EVOC_Analsis defines the expected value of computation and tests relationships between this and response time (Figs. 4 and 5).
+- EVOC_Ananalysis defines the expected value of computation and tests relationships between this and response time (Figs. 4 and 5).
 
 - Cost_of_Time_Analysis empirically measures the cost of spending time and computes the implied optimal move times based on this (Figs. 6 and 7)
 
