@@ -268,7 +268,7 @@ def add_rt(game_df):
     
     """
     Computes response time for each move in input dataframe and returns dataframe with this as a new row.
-    Note that for inital run this was mistaken and didn't include games '+10' and up, so this is corrected for in later scripts
+    Note that for inital run this was mistaken and didn't include games '+10' and '+20', so this is corrected for in later scripts
     """
         
     game_df = game_df.reset_index(drop = True)
