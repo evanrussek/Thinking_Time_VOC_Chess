@@ -26,11 +26,13 @@ from convert_stockfish_scores import *
 RAW_FOLDERS = ['data/raw/csv_jan', 'data/raw/csv_feb', 'data/raw/csv_mar', 'data/raw/csv_apr']
 SAVE_FOLDER = "./data/clean/pkl_v2/"
 
-def cps_to_wps_evan(cps, is_white):
+def process_score_evan(cps, is_white):
     """
-    Converts 2d array of centipawn scores to win prob 
+    Converts 2d array of centipawn scores (or mate) to win prob 
     
     passed through to get_vocs() to calculate vocs in terms of win percentage
+    
+    uses evan's functions 'mate_to_wp' and 'cp_to_wp' in 'convert_stockfish_scores.py' - doesn't use 'process_score' because original scoring stored in slightly different (though equivalent) format
     """
     
     wps = np.empty(cps.shape)
@@ -51,6 +53,7 @@ def cps_to_wps_evan(cps, is_white):
                 # if dealing with mate -
                 # note that mates were stored w/ 10000 + mate_number to preserve same format as centipawns
                 # mate_to_wp takes in from active player.
+                
                 wps[i,j] = mate_to_wp(cps[i,j] - np.sign(raw_score)*10000) # edited this
                 
     return wps
@@ -139,9 +142,9 @@ def process_file_path(file_path, time_ctrl, total_time, max_rt, lower_ply, upper
     
     # add VOC data
     if len(df) > 0:      
-            df['voc'] = df.apply(lambda x: get_vocs(x['values'], cps_to_wps_evan, x['move_ply']%2==0, 
+            df['voc'] = df.apply(lambda x: get_vocs(x['values'], process_score_evan, x['move_ply']%2==0, 
                                                     depth_0=0, depth_f=-1,step=0.005, is_eco=True), axis=1)
-            df['evan'] = df.apply(lambda x: get_evan(x['values'], cps_to_wps_evan, x['move_ply']%2==0), axis=1)
+            df['evan'] = df.apply(lambda x: get_evan(x['values'], process_score_evan, x['move_ply']%2==0), axis=1)
             df['time-rem'] = df.apply(lambda x: int(total_time - int(x['clock'])), axis=1)
 
             result = df[['game_id','move_ply','time-rem','rt','elo','evan','voc']]
