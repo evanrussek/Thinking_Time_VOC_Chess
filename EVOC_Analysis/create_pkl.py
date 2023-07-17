@@ -26,38 +26,6 @@ from convert_stockfish_scores import *
 RAW_FOLDERS = ['data/raw/csv_jan', 'data/raw/csv_feb', 'data/raw/csv_mar', 'data/raw/csv_apr']
 SAVE_FOLDER = "./data/clean/pkl_v2/"
 
-def process_score_evan(cps, is_white):
-    """
-    Converts 2d array of centipawn scores (or mate) to win prob 
-    
-    passed through to get_vocs() to calculate vocs in terms of win percentage
-    
-    uses evan's functions 'mate_to_wp' and 'cp_to_wp' in 'convert_stockfish_scores.py' - doesn't use 'process_score' because original scoring stored in slightly different (though equivalent) format
-    """
-    
-    wps = np.empty(cps.shape)
-    
-    for i in range(cps.shape[0]):
-        for j in range(cps.shape[1]):
-            
-            # if dealing w/ centipawns
-            if np.abs(cps[i,j])< 10000:
-                
-                # note: cp_to_wp assumes framing in white, but cps is framed as active 
-                wps[i,j] = cp_to_wp( (2*is_white-1)*cps[i,j] )
-                
-                # wps[i,j] = sigmoid(offset*(2*is_white-1) + k*cps[i,j])
-                
-            else:
-                
-                # if dealing with mate -
-                # note that mates were stored w/ 10000 + mate_number to preserve same format as centipawns
-                # mate_to_wp takes in from active player.
-                
-                wps[i,j] = mate_to_wp(cps[i,j] - np.sign(raw_score)*10000) # edited this
-                
-    return wps
-
 def get_vocs(values_raw, wp_function, is_white, depth_0=0, depth_f=-1, fixed_sd = 0.0001, sdm = 1, upper=1,lower=0,step=0.001, is_eco = False):
     """
     Calculates expected voc from mean and standard deviations derived from values_cp array
