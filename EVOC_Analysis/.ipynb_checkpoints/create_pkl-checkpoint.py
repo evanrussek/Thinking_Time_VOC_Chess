@@ -3,7 +3,6 @@
 # Mapping from centipawn scores (cp) to win percentage is done here
 # to avoid having to reprocess individual games.
 
-
 import sys
 import os
 import numpy as np
