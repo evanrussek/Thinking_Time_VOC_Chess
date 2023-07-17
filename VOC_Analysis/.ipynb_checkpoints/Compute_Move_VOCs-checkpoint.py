@@ -40,14 +40,14 @@ if on_cluster:
     engine_folder = '/home/erussek/projects/utils'
     stockfish_path = os.path.join(engine_folder, stockfish_file)
     chess_data_folder = "/scratch/gpfs/erussek/Chess_project/Lichess_2019_data"
-    to_save_folder = "/scratch/gpfs/erussek/Chess_project/analysis_results_Aug_2019_full_3_sf14" # this is fine still
+    to_save_folder = "/scratch/gpfs/erussek/Chess_project/analysis_results_Jan_2019_full_3_sf14" # this is fine still
 
 else:
 
     working_folder = '/Users/evanrussek/Dropbox/Griffiths_Lab_Stuff/Code/Chess_Project';
     stockfish_path = "/Users/evanrussek/stockfish/14/bin/stockfish"
-    chess_data_folder = '/Users/evanrussek/Dropbox/Griffiths_Lab_Stuff/Chess_Data/time_cond_filtered_data'
-    to_save_folder = '/Users/evanrussek/Dropbox/Griffiths_Lab_Stuff/Chess_Data/analysis_results_Jan_2019_{}_sf14'.format(tc_name)
+    chess_data_folder = '/Users/evanrussek/Dropbox/Griffiths_Lab_Stuff/Chess_Data/Lichess_2019_data'
+    to_save_folder = '/Users/evanrussek/Dropbox/Griffiths_Lab_Stuff/Chess_Data/analysis_results_Jan_2019_full_3_sf14;
 
 os.chdir(working_folder)
 
