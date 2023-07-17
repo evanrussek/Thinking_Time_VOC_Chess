@@ -109,9 +109,9 @@ def process_file_path(file_path, time_ctrl, total_time, max_rt, lower_ply, upper
     
     # add VOC data
     if len(df) > 0:      
-            df['voc'] = df.apply(lambda x: get_vocs(x['values'], process_score_evan, x['move_ply']%2==0, 
+            df['voc'] = df.apply(lambda x: get_vocs(x['values'], process_score_f2, x['move_ply']%2==0, 
                                                     depth_0=0, depth_f=-1,step=0.005, is_eco=True), axis=1)
-            df['evan'] = df.apply(lambda x: get_evan(x['values'], process_score_evan, x['move_ply']%2==0), axis=1)
+            df['evan'] = df.apply(lambda x: get_evan(x['values'], process_score_f2, x['move_ply']%2==0), axis=1)
             df['time-rem'] = df.apply(lambda x: int(total_time - int(x['clock'])), axis=1)
 
             result = df[['game_id','move_ply','time-rem','rt','elo','evan','voc']]

@@ -53,13 +53,13 @@ def process_score(this_score, white_active):
     score_dict = {'type': score_type, 'val': score_val, 'wp': wp}
     return score_dict
 
-def process_score_evan(cps, is_white):
+def process_score_f2(cps, is_white):
     """
     Converts 2d array of centipawn scores (or mate) to win prob 
     
     passed through to get_vocs() to calculate vocs in terms of win percentage
     
-    uses evan's functions 'mate_to_wp' and 'cp_to_wp' in 'convert_stockfish_scores.py' - doesn't use 'process_score' because original scoring stored in slightly different (though functionally equivalent) format
+    uses prior functions 'mate_to_wp' and 'cp_to_wp' in 'convert_stockfish_scores.py' - doesn't use 'process_score' because original scoring stored in slightly different (though functionally equivalent) format
     """
     
     wps = np.empty(cps.shape)
