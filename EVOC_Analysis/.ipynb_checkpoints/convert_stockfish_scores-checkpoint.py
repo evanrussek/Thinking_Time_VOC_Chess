@@ -57,9 +57,10 @@ def process_score_f2(cps, is_white):
     """
     Converts 2d array of centipawn scores (or mate) to win prob 
     
+    This is the same as the above function, however deals with slightly different input data format (though functionally equivalent) which was used for EVOC analysis.
+    
     passed through to get_vocs() to calculate vocs in terms of win percentage
     
-    uses prior functions 'mate_to_wp' and 'cp_to_wp' in 'convert_stockfish_scores.py' - doesn't use 'process_score' because original scoring stored in slightly different (though functionally equivalent) format
     """
     
     wps = np.empty(cps.shape)
