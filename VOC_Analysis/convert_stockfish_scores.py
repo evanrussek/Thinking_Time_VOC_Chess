@@ -23,7 +23,7 @@ def mate_to_wp(score_val_mate):
     """
     Converts plys from mate to win prob (for the player who is within reach of mate)
     """
-    # these values were discovered by logistic regression mapping SF cp evals to win-rates
+    # these values were discovered by logistic regression mapping SF mate evals to win-rates
     return sigmoid(3.6986223572286208 + -0.05930670977061789*np.abs(score_val_mate))
 
 
