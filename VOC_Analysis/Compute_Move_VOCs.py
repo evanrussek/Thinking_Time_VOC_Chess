@@ -232,11 +232,8 @@ def comp_moves_at_depth_and_eval(move_data, engine, limit_dict, eval_depths_arr)
     move_at_depth_df, board_score_dict = get_move_at_each_depth(board, engine, limit_dict, white_active) 
     move_evals_df = evaluate_moves_at_each_depth(move_at_depth_df, board, engine, eval_depths_arr, white_active)
     
-    # let's get baseline correct
-    move_evals_df['score_wp_bc'] = move_evals_df['score_wp'] - move_evals_df.loc[move_evals_df.depth == 1,'score_wp'][0]
-    
-    
-    move_evals_df['score_wp_bc_active'] = move_evals_df['score_wp_bc'] if white_active else -1*move_evals_df['score_wp_bc']
+    # convert to active from white
+    move_evals_df['score_wp_active'] = move_evals_df['score_wp'] if white_active else -1*move_evals_df['score_wp']
     move_evals_df['fen'] = pos_fen
     move_evals_df['white_active'] = white_active
     move_evals_df['move_ply'] = move_data['move_ply']
@@ -259,7 +256,7 @@ def compute_voc(move_df):
     
     """
     
-    voc = np.amax(move_df['score_wp_bc_active'].values) - move_df['score_wp_bc_active'].values[0] # this is 
+    voc = np.amax(move_df['score_wp_active'].values) - move_df['score_wp_active'].values[0] # this is 
         
     return voc
 
